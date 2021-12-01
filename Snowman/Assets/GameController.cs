@@ -11,6 +11,9 @@ public class GameController : MonoBehaviour
     public GameObject PlayScreen;
     private WordGame guessingGame;
     public UnityEngine.UI.InputField PlayerGuess;
+    public UnityEngine.UI.Text GetWordText;
+    public UnityEngine.UI.Text GetGuessedLettersText;
+    public UnityEngine.UI.Text CheckGuessText;
     public void StartGame()
     {
         this.guessingGame = new WordGuesser.WordGame("apple", 5);
@@ -39,6 +42,18 @@ public class GameController : MonoBehaviour
     public void SubmitGuess()
     {
         string guess = PlayerGuess.text;
+        CheckGuessText.text = this.guessingGame.CheckGuess(PlayerGuess.text);
+        GetWordText.text = this.guessingGame.GetWord();
+        GetGuessedLettersText.text = this.guessingGame.GetGuessedLetters();
+
         PlayerGuess.text = string.Empty;
+
+        //if this.guessingGame.IsGameOver()
+        {
+
+        } //else this.guessingGame.IsGameWon()
+        {
+            
+        }
     }
 }
