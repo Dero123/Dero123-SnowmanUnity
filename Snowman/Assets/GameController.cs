@@ -18,8 +18,8 @@ public class GameController : MonoBehaviour
     public UnityEngine.UI.Text PlayerLost;
     public UnityEngine.UI.Button NewGame;
     public GameObject GameOverScreen;
-     public GameObject GameWonScreen;
-     public UnityEngine.UI.Text PlayerWon;
+    public GameObject GameWonScreen;
+    public UnityEngine.UI.Text PlayerWon;
     public void StartGame()
     {
         this.guessingGame = new WordGuesser.WordGame("apple", 5);
@@ -31,6 +31,14 @@ public class GameController : MonoBehaviour
         this.StartButton.gameObject.SetActive(false);
         this.StartScreen.SetActive(false);
         this.PlayScreen.SetActive(true);
+
+          string guess = PlayerGuess.text;
+        CheckGuessText.text = this.guessingGame.CheckGuess(PlayerGuess.text);
+        GetWordText.text = this.guessingGame.GetWord();
+        GetGuessedLettersText.text = this.guessingGame.GetGuessedLetters();
+
+        PlayerGuess.text = string.Empty;
+
     }
 
     public void OpenStartScreen()
@@ -41,8 +49,10 @@ public class GameController : MonoBehaviour
 
     public void Start()
     {
-      this.StartScreen.SetActive(true);
-      this.PlayScreen.SetActive(false);  
+        this.StartScreen.SetActive(true);
+        this.PlayScreen.SetActive(false);
+        this.GameOverScreen.SetActive(false);
+        this.GameWonScreen.SetActive(false);
     }
 
     public void SubmitGuess()
@@ -54,12 +64,18 @@ public class GameController : MonoBehaviour
 
         PlayerGuess.text = string.Empty;
 
-        //if this.guessingGame.IsGameOver()
+        if (this.guessingGame.IsGameOver())
         {
-
-        } //else this.guessingGame.IsGameWon()
+            this.GameOverScreen.SetActive(true);
+            this.GameWonScreen.SetActive(false);
+            this.StartScreen.SetActive(false);
+            this.PlayScreen.SetActive(false);
+        } else if (this.guessingGame.IsGameWon())
         {
-
+            this.GameOverScreen.SetActive(false);
+            this.GameWonScreen.SetActive(true);
+            this.StartScreen.SetActive(false);
+            this.PlayScreen.SetActive(false);
         }
     }
 }
