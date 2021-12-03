@@ -14,6 +14,12 @@ public class GameController : MonoBehaviour
     public UnityEngine.UI.Text GetWordText;
     public UnityEngine.UI.Text GetGuessedLettersText;
     public UnityEngine.UI.Text CheckGuessText;
+    public UnityEngine.UI.Text CorrectWord;
+    public UnityEngine.UI.Text PlayerLost;
+    public UnityEngine.UI.Button NewGame;
+    public GameObject GameOverScreen;
+     public GameObject GameWonScreen;
+     public UnityEngine.UI.Text PlayerWon;
     public void StartGame()
     {
         this.guessingGame = new WordGuesser.WordGame("apple", 5);
@@ -53,7 +59,7 @@ public class GameController : MonoBehaviour
 
         } //else this.guessingGame.IsGameWon()
         {
-            
+
         }
     }
 }
